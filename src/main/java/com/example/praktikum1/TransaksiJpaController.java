@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -25,12 +26,16 @@ public class TransaksiJpaController implements Serializable {
     public TransaksiJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.example_praktikum1_jar_0.0.1-SNAPSHOTPU");
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
+    public TransaksiJpaController() {
+    }
+
+    
     public void create(Transaksi transaksi) throws IllegalOrphanException {
         List<String> illegalOrphanMessages = null;
         Barang idbarangOrphanCheck = transaksi.getIdbarang();
